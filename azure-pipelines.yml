@@ -1,0 +1,21 @@
+trigger:
+- master
+
+pr: none
+
+stages:
+- stage: build
+  displayName: 'Build'
+  jobs:
+  - job: zip_push
+    displayName: 'zip and push aritifacts'
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+    - task: PublishPipelineArtifact@0
+      inputs:
+        targetPath: '$(System.ArtifactsDirectory)'
