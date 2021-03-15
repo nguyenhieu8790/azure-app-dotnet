@@ -16,6 +16,8 @@ stages:
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
         includeRootFolder: false
+    - bash: 'ls -al'
+      displayName: 'list dir'
     - task: PublishPipelineArtifact@0
       inputs:
         targetPath: '$(System.ArtifactsDirectory)'
